@@ -15,10 +15,17 @@ const socketIO = require('socket.io')(http, {
 
 //Add this before the app.get() block
 socketIO.on('connection', (socket) => {
-    console.log(`⚡: ${socket.id} user just connected!`);
-    socket.on('disconnect', () => {
-      console.log('🔥: A user disconnected');
-    });
+  console.log(`⚡: ${socket.id} user just connected!`);
+
+  //Listens and logs the message to the console
+ //sends the message to all the users on the server
+  socket.on('message', (data) => {
+    socketIO.emit('messageResponse', data);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('🔥: A user disconnected');
+  });
 });
 
 
