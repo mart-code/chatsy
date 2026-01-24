@@ -31,6 +31,8 @@ socketIO.on('connection', (socket) => {
     socketIO.emit('newUserResponse', users);
   });
 
+  
+
   socket.on('disconnect', () => {
     console.log('🔥: A user disconnected');
     //Updates the list of users when a user disconnects from the server
