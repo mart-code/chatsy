@@ -22,9 +22,9 @@ const ChatPage = ({ socket }) => {
     socket.on('typingResponse', (data) => setTypingStatus(data));
   }, [socket]);
   return (
-    <div className="chat">
-      <ChatBar socket={socket} />
-      <div className="chat__main">
+    <div className="flex items-stretch h-screen">
+      <ChatBar socket={socket} className="flex-1/4" />
+      <div className="flex-3/4 flex flex-col h-screen">
         <ChatBody messages={messages} lastMessageRef={lastMessageRef} typingStatus={typingStatus}/>
         <ChatFooter socket={socket} />
       </div>
