@@ -1,5 +1,4 @@
 import {
-  getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -9,7 +8,8 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 
-const auth = getAuth();
+import {auth} from "../config/firebase-config";
+
 
 // ===== EMAIL/PASSWORD AUTHENTICATION =====
 
@@ -142,7 +142,7 @@ export const signInWithGoogle = async () => {
 
     // Send to backend
     const idToken = await user.getIdToken();
-    const response = await fetch("http://localhost:4000/api/google-login", {
+    const response = await fetch("http://localhost:4000/api/", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${idToken}`,

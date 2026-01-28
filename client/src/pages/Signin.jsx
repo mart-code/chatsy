@@ -1,6 +1,24 @@
-import React from "react";
+import { signInWithGoogle } from "../../firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Signin = () => {
+  const navigate = useNavigate();
+  const { currentUser } = useAuth();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const authData = await signInWithGoogle();
+      console.log("Google Sign-in successful:", authData);
+      // Firebase will automatically update the auth state,
+      // which will trigger navigation via PrivateRoute
+      navigate("/chat");
+    } catch (error) {
+      console.error("Google sign-in failed:", error);
+      // Optionally show an error message to the user
+    }
+  };
+
   return (
     <div className="h-screen bg-white">
       <div className="flex h-full overflow-hidden">
@@ -17,7 +35,10 @@ const Signin = () => {
             </div>
 
             {/* Google Login Button */}
-            <button className="w-full bg-white border border-gray-300 text-gray-700 font-medium py-4 px-4 rounded-lg hover:bg-gray-50 transition duration-200 flex items-center justify-center gap-2 mb-8 shadow-sm">
+            <button
+              className="w-full bg-white border border-gray-300 text-gray-700 font-medium py-4 px-4 rounded-lg hover:bg-gray-50 transition duration-200 flex items-center justify-center gap-2 mb-8 shadow-sm"
+              onClick={handleGoogleSignIn}
+            >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"

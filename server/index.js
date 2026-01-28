@@ -13,7 +13,6 @@ const socketIO = require('socket.io')(http, {
     }
 });
 
-//Add this before the app.get() block
 let users = [];
 
 socketIO.on('connection', (socket) => {
@@ -22,12 +21,8 @@ socketIO.on('connection', (socket) => {
     socketIO.emit('messageResponse', data);
   });
 
-  //Listens when a new user joins the server
   socket.on('newUser', (data) => {
-    //Adds the new user to the list of users
     users.push(data);
-    // console.log(users);
-    //Sends the list of users to the client
     socketIO.emit('newUserResponse', users);
   });
 
@@ -35,17 +30,15 @@ socketIO.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log('🔥: A user disconnected');
-    //Updates the list of users when a user disconnects from the server
     users = users.filter((user) => user.socketID !== socket.id);
-    // console.log(users);
-    //Sends the list of users to the client
     socketIO.emit('newUserResponse', users);
     socket.disconnect();
   });
 });
 
 
-app.get('/api', (req, res) => {
+
+app.post('/api', (req, res) => {
   res.json({
     message: 'Hello world',
   });
