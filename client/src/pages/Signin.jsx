@@ -10,8 +10,14 @@ const Signin = () => {
     try {
       const authData = await signInWithGoogle();
       console.log("Google Sign-in successful:", authData);
-      // Firebase will automatically update the auth state,
-      // which will trigger navigation via PrivateRoute
+
+      // Check if the user is already logged in
+      if (currentUser) {
+        // User is already logged in, redirect to the chat page
+        navigate("/chat");
+        return;
+      }
+
       navigate("/chat");
     } catch (error) {
       console.error("Google sign-in failed:", error);
