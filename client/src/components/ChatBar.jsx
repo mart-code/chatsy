@@ -15,25 +15,25 @@ const ChatBar = ({ socket }) => {
 
   return (
     <div
-      className={`h-full ${isDarkMode ? "bg-gray-800 border-gray-700" : "bg-gradient-to-b from-green-50 to-emerald-50 border-green-200"} border-r flex flex-col p-6 transition-colors duration-200`}
+      className={`h-full ${isDarkMode ? "bg-gray-800 border-gray-700" : "bg-gradient-to-b from-blue-50 to-slate-50 border-blue-200"} border-r flex flex-col p-6 transition-colors duration-200`}
     >
       <div className="mb-8">
         <h2
-          className={`text-2xl font-bold ${isDarkMode ? "text-white" : "text-green-800"}`}
+          className={`text-2xl font-bold ${isDarkMode ? "text-white" : "text-blue-800"}`}
         >
           Open Chat
         </h2>
         <div
-          className={`h-1 w-12 rounded-full mt-2 ${isDarkMode ? "bg-blue-500" : "bg-gradient-to-r from-green-500 to-emerald-500"}`}
+          className={`h-1 w-12 rounded-full mt-2 ${isDarkMode ? "bg-blue-500" : "bg-gradient-to-r from-blue-500 to-blue-500"}`}
         ></div>
       </div>
 
       <div className="flex-1 flex flex-col">
         <h4
-          className={`text-sm font-semibold uppercase tracking-wide mb-4 flex items-center gap-2 ${isDarkMode ? "text-gray-400" : "text-green-700"}`}
+          className={`text-sm font-semibold uppercase tracking-wide mb-4 flex items-center gap-2 ${isDarkMode ? "text-gray-400" : "text-blue-700"}`}
         >
           <span
-            className={`w-2 h-2 rounded-full animate-pulse ${isDarkMode ? "bg-blue-500" : "bg-green-500"}`}
+            className={`w-2 h-2 rounded-full animate-pulse ${isDarkMode ? "bg-blue-500" : "bg-blue-500"}`}
           ></span>
           Active Users
         </h4>
@@ -44,16 +44,16 @@ const ChatBar = ({ socket }) => {
               className={`p-3 rounded-lg border transition duration-200 cursor-pointer group ${
                 isDarkMode
                   ? "bg-gray-700 border-gray-600 hover:bg-gray-600 hover:border-blue-500"
-                  : "bg-white border-green-100 hover:border-green-300 hover:bg-green-50"
+                  : "bg-white border-blue-100 hover:border-blue-300 hover:bg-blue-50"
               }`}
             >
               <p
-                className={`text-sm font-medium transition ${isDarkMode ? "text-gray-100 group-hover:text-blue-400" : "text-gray-700 group-hover:text-green-700"}`}
+                className={`text-sm font-medium transition ${isDarkMode ? "text-gray-100 group-hover:text-blue-400" : "text-gray-700 group-hover:text-blue-700"}`}
               >
                 {user.userName}
               </p>
               <span
-                className={`inline-block w-2 h-2 rounded-full mt-1 transition ${isDarkMode ? "bg-blue-500 group-hover:bg-blue-400" : "bg-green-500 group-hover:bg-green-600"}`}
+                className={`inline-block w-2 h-2 rounded-full mt-1 transition ${isDarkMode ? "bg-blue-500 group-hover:bg-blue-400" : "bg-blue-500 group-hover:bg-blue-600"}`}
               ></span>
             </div>
           ))}
@@ -69,20 +69,6 @@ const ChatBar = ({ socket }) => {
         )}
       </div>
 
-      {/* Profile Button */}
-      <button
-        onClick={() => navigate("/profile")}
-        className={`mt-6 w-full py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
-          isDarkMode
-            ? "bg-blue-600 hover:bg-blue-700 text-white"
-            : "bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white"
-        }`}
-      >
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
-        </svg>
-        {currentUser?.displayName || "Profile"}
-      </button>
     </div>
   );
 };

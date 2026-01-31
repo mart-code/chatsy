@@ -138,7 +138,7 @@ const Profile = () => {
           {/* Message */}
           {message && (
             <div
-              className={`mt-3 p-2 rounded text-sm text-center ${message.includes("successfully") ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}
+              className={`mt-3 p-2 rounded text-sm text-center ${message.includes("successfully") ? "bg-blue-100 text-blue-700" : "bg-red-100 text-red-700"}`}
             >
               {message}
             </div>
@@ -178,7 +178,7 @@ const Profile = () => {
             >
               <span
                 className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${
-                  isDarkMode ? "translate-x-7" : "translate-x-1"
+                  isDarkMode ? "tranblue-x-7" : "tranblue-x-1"
                 }`}
               />
             </button>

@@ -6,7 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 const ChatBody = ({ messages, lastMessageRef, typingStatus }) => {
   const navigate = useNavigate();
   const { isDarkMode } = useTheme();
-  const {currentUser} = useAuth();
+  const { currentUser } = useAuth();
 
   const handleLeaveChat = () => {
     localStorage.removeItem("userName");
@@ -17,14 +17,14 @@ const ChatBody = ({ messages, lastMessageRef, typingStatus }) => {
   return (
     <>
       <header
-        className={`${isDarkMode ? "bg-gray-800 text-white border-b border-gray-700" : "bg-gradient-to-r from-green-500 to-emerald-600 text-white"} px-6 py-4 shadow-md flex items-center justify-between transition-colors duration-200`}
+        className={`${isDarkMode ? "bg-gray-800 text-white border-b border-gray-700" : "bg-gradient-to-r from-blue-500 to-blue-600 text-white"} px-6 py-4 shadow-md flex items-center justify-between transition-colors duration-200`}
       >
         <p className="text-lg font-semibold">Hangout with Colleagues</p>
         <button
           className={`font-semibold px-4 py-2 rounded-lg transition duration-200 shadow-sm hover:shadow-md ${
             isDarkMode
               ? "bg-gray-700 text-blue-400 hover:bg-gray-600"
-              : "bg-white text-green-600 hover:bg-green-50"
+              : "bg-white text-blue-600 hover:bg-blue-50"
           }`}
           onClick={handleLeaveChat}
         >
@@ -45,7 +45,7 @@ const ChatBody = ({ messages, lastMessageRef, typingStatus }) => {
                   You
                 </p>
                 <div
-                  className={`rounded-lg rounded-tr-none px-4 py-2 shadow-md z-20 ${isDarkMode ? "bg-blue-600 text-white" : "bg-gradient-to-r from-green-500 to-emerald-500 text-white"}`}
+                  className={`rounded-lg rounded-tr-none px-4 py-2 shadow-md z-20 ${isDarkMode ? "bg-blue-600 text-white" : "bg-gradient-to-r from-blue-500 to-blue-500 text-white"}`}
                 >
                   <p className="text-sm">{message.text}</p>
                 </div>
@@ -71,18 +71,18 @@ const ChatBody = ({ messages, lastMessageRef, typingStatus }) => {
 
         {typingStatus && (
           <div
-            className={`flex items-center gap-2 text-sm ${isDarkMode ? "text-blue-400" : "text-green-600"}`}
+            className={`flex items-center gap-2 text-sm ${isDarkMode ? "text-blue-400" : "text-blue-600"}`}
           >
             <span className="inline-flex items-center gap-1">
               <span
-                className={`w-2 h-2 rounded-full animate-bounce ${isDarkMode ? "bg-blue-400" : "bg-green-500"}`}
+                className={`w-2 h-2 rounded-full animate-bounce ${isDarkMode ? "bg-blue-400" : "bg-blue-500"}`}
               ></span>
               <span
-                className={`w-2 h-2 rounded-full animate-bounce ${isDarkMode ? "bg-blue-400" : "bg-green-500"}`}
+                className={`w-2 h-2 rounded-full animate-bounce ${isDarkMode ? "bg-blue-400" : "bg-blue-500"}`}
                 style={{ animationDelay: "0.2s" }}
               ></span>
               <span
-                className={`w-2 h-2 rounded-full animate-bounce ${isDarkMode ? "bg-blue-400" : "bg-green-500"}`}
+                className={`w-2 h-2 rounded-full animate-bounce ${isDarkMode ? "bg-blue-400" : "bg-blue-500"}`}
                 style={{ animationDelay: "0.4s" }}
               ></span>
             </span>
