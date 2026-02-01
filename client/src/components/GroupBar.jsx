@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
 
 
-const ChatBar = ({ socket }) => {
+const GroupBar = ({ socket }) => {
   const [users, setUsers] = useState([]);
   const { isDarkMode } = useTheme();
 
@@ -71,4 +71,4 @@ const ChatBar = ({ socket }) => {
   );
 };
 
-export default ChatBar;
+export default GroupBar;

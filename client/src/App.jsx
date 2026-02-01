@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ChatPage from "./components/ChatPage";
+import ChatPage from "./pages/ChatPage";
 import socketIO from "socket.io-client";
 import Signin from "./pages/Signin";
 import Profile from "./pages/Profile";
@@ -17,7 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Signin />}></Route>
             <Route
-              path="/chat"
+              path="/private-chat"
               element={
                 <PrivateRoute>
                   <ChatPage socket={socket} />

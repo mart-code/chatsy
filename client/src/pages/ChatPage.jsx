@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "./Navbar";
-import ChatBar from "./ChatBar";
-import ChatBody from "./ChatBody";
-import ChatFooter from "./ChatFooter";
+import Navbar from "../components/Navbar";
+import ChatBar from "../components/ChatBar";
+import ChatBody from "../components/ChatBody";
+import ChatFooter from "../components/ChatFooter";
 import { useEffect, useState, useRef } from "react";
 
 const ChatPage = ({ socket }) => {

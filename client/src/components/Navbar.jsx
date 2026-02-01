@@ -9,34 +9,43 @@ const Navbar = () => {
 
   const navItems = [
     {
-      id: "groups",
-      label: "Groups",
-      icon: "👥",
-      tooltip: "Groups",
-      action: () => setActiveNav("groups"),
-    },
-    {
       id: "private-chat",
       label: "Private Chat",
       icon: "💬",
       tooltip: "Private Chat",
-      action: () => setActiveNav("private-chat"),
+      action: () => {setActiveNav("private-chat")
+        navigate('/private-chat')
+      }
+    },
+    {
+      id: "groups",
+      label: "Groups",
+      icon: "👥",
+      tooltip: "Groups",
+      action: () => {setActiveNav("groups")
+        navigate('/groups')
+      },
     },
     {
       id: "rooms",
       label: "Rooms",
       icon: "🏠",
       tooltip: "Rooms",
-      action: () => setActiveNav("rooms"),
+      action: () => {setActiveNav("rooms")
+        navigate('/rooms')
+      },
     },
     {
       id: "tasks",
       label: "Tasks",
       icon: "📋",
       tooltip: "Manage Tasks",
-      action: () => setActiveNav("tasks"),
+      action: () => {setActiveNav("tasks")
+        navigate('/tasks')
+      },
     },
   ];
+
 
   return (
     <div
@@ -46,7 +55,6 @@ const Navbar = () => {
     >
       {/* Top Navigation Items */}
       <div className="flex flex-col items-center gap-6">
-
         {/* Navigation Items */}
         {navItems.map((item) => (
           <button
