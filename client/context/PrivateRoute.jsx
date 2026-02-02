@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate, Outlet } from "react-router-dom"; // Assuming React Router v6
+
+import { useNavigate } from "react-router-dom"; // Assuming React Router v6
 import { useAuth } from "./AuthContext";
 
 const PrivateRoute = ({children}) => {
