@@ -14,7 +14,7 @@ const Signin = () => {
       // Check if the user is already logged in
       if (currentUser) {
         // User is already logged in, redirect to the chat page
-        navigate("/chat");
+        navigate("/private-chat");
         return;
       }
 
