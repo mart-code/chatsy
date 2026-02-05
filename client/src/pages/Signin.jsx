@@ -1,4 +1,4 @@
-import { signInWithGoogle } from "../../firebase/auth";
+import { signInWithGoogle, signupUser, loginUser} from "../../firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import {useState} from 'react'
@@ -6,8 +6,36 @@ import {useState} from 'react'
 const Signin = () => {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [register, setRegister] = useState(false);
+
+  const handleEmailSignIn = async () => {
+   try {
+     const authData = await loginUser(email, password);
+     console.log("Email Sign-in successful:", authData);
+     navigate("/private-chat");
+   } catch (error) {
+    console.error("Email sign-in failed:", error);
+   }
+
+  }
+
+const handleEmailSignUp = async () => {
+  if (password !== confirmPassword) {
+    console.error("Passwords do not match");
+    return;
+  }
+  try {
+    const authData = await signupUser(email, password);
+    console.log("Email Sign-up successful:", authData);
+    navigate("/private-chat");
+  } catch (error) {
+    console.error("Email sign-up failed:", error);
+  }
+}
 
   const handleGoogleSignIn = async () => {
     try {
@@ -21,7 +49,7 @@ const Signin = () => {
         return;
       }
 
-      navigate("/chat");
+      navigate("/private-chat");
     } catch (error) {
       console.error("Google sign-in failed:", error);
       // Optionally show an error message to the user
@@ -80,15 +108,17 @@ const Signin = () => {
                 </span>
               </div>
             </div>
-
-            {/* SignIn Form */}
-            <form className="flex flex-col gap-6">
+{
+  !register && (
+     <form className="flex flex-col gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-3">
                   Email address
                 </label>
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-base"
                 />
@@ -99,30 +129,101 @@ const Signin = () => {
                 </label>
                 <input
                   type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-base"
                 />
               </div>
               <button
                 type="submit"
+                onClick={handleEmailSignIn}
                 className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-4 rounded-lg hover:from-blue-600 hover:to-blue-700 transition duration-200 shadow-md hover:shadow-lg text-base"
               >
                 Sign in
               </button>
             </form>
+  )
+}
 
-            
 
-            {/* Footer */}
+{register && (
+      <form className="flex flex-col gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-base"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Password
+                </label>
+                <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  placeholder="••••••••"
+                  className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-base"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Confirm Password
+                </label>
+                <input
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                  type="password"
+                  placeholder="••••••••"
+                  className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-base"
+                />
+              </div>
+              <button
+              onClick={handleEmailSignUp}
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-4 rounded-lg hover:from-blue-600 hover:to-blue-700 transition duration-200 shadow-md hover:shadow-lg text-base"
+              >
+                Sign up
+              </button>
+            </form>
+)}
+                        {/* SignUp Form */}
+        
+
+            {/* Footer Signin*/}
             <p className="text-center text-sm text-gray-600 mt-6">
               Don't have an account?{" "}
               <a
                 href="#"
                 className="text-blue-600 font-medium hover:text-blue-700"
+                onClick={()=> setRegister(true)}
               >
                 Sign up
               </a>
             </p>
+{register && (
+
+            <p className="text-center text-sm text-gray-600 mt-6">
+              Have an account?{" "}
+              <a
+                href="#"
+                className="text-blue-600 font-medium hover:text-blue-700"
+                onClick={()=> setRegister(false)}
+              >
+                Sign in
+              </a>
+            </p>
+)
+
+}
+         
           </div>
         </div>
 

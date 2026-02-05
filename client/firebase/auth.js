@@ -70,7 +70,7 @@ export const signupUser = async (email, password) => {
     const idToken = await userCredential.user.getIdToken();
 
     // 3. Send token to backend
-    const response = await fetch("http://localhost:4000/api/signup", {
+    const response = await fetch("http://localhost:4000/api/", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${idToken}`,
