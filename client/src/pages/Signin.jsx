@@ -1,10 +1,13 @@
 import { signInWithGoogle } from "../../firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import {useState} from 'react'
 
 const Signin = () => {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
+
+  const [register, setRegister] = useState(false);
 
   const handleGoogleSignIn = async () => {
     try {
@@ -78,7 +81,7 @@ const Signin = () => {
               </div>
             </div>
 
-            {/* Form */}
+            {/* SignIn Form */}
             <form className="flex flex-col gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-3">
@@ -107,6 +110,8 @@ const Signin = () => {
                 Sign in
               </button>
             </form>
+
+            
 
             {/* Footer */}
             <p className="text-center text-sm text-gray-600 mt-6">
